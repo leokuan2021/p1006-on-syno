@@ -1,0 +1,3 @@
+[submodule "foo2zjs"]
+	path = foo2zjs
+	url = https://github.com/koenkooi/foo2zjs.git
