@@ -22,7 +22,16 @@ You could also write a start-up script to automate the process. But I only neede
 ```console
 sudo netstat -pna | grep 631
 sudo synosystemctl stop cupsd
-sudo docker run -d -p 631:631 -p 5353:5353 --privileged -t -i --name p1006cups --device=/dev/bus/usb/001/001 leokuan/p1006gy DiskStation 7F00147B9D345A50)
+sudo docker run -d -p 631:631 -p 5353:5353 --privileged -t -i --name p1006cups --device=/dev/bus/usb/001/001 leokuan/p1006cups:latest
+```
+
+Of particular note, DSM now comes with `lsusb`, but it's a strange Python implementation of `lsusb` that doesn't really tell you the device numbers of your connected devices. 
+
+```console
+$ lsusb
+|__usb1          1d6b:0002:0404 09  2.00  480MBit/s 0mA 1IF  (Linux 4.4.180+ xhci-hcd xHCI Host Controller 0000:00:15.0) hub
+  |__1-2         03f0:3e17:0100 00  2.00  480MBit/s 98mA 1IF  (Hewlett-Packard HP LaserJet P1006 AC2DFF6)
+  |__1-4         f400:f400:0100 00  2.00  480MBit/s 200mA 1IF  (Synology DiskStation 7F00147B9D345A50)
 |__usb2          1d6b:0003:0404 09  3.00 5000MBit/s 0mA 1IF  (Linux 4.4.180+ xhci-hcd xHCI Host Controller 0000:00:15.0) hub
   |__2-1         0bc2:ab34:0100 00  3.00 5000MBit/s 0mA 1IF  (Seagate Backup+  Desk NA7H3L4F)
 ```
